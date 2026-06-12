@@ -1,7 +1,300 @@
-<html>
-  <head>
-    <title>
-      GPMS
-    </title>
-  </head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GPMSquare — AI-Based Market Research for Pharma & FMCG</title>
+<meta name="description" content="GPMSquare turns consumer and expert opinion into decision-ready market research for pharma and FMCG, using AI, NLP and custom econometric models.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F6F8F7;
+  --ink:#0F1E33;
+  --cobalt:#2742E8;
+  --verdict:#0E9F6E;
+  --graphite:#5B6B7F;
+  --hairline:#DCE3E9;
+  --card:#FFFFFF;
+  --display:"Bricolage Grotesque",sans-serif;
+  --body:"IBM Plex Sans",sans-serif;
+  --mono:"IBM Plex Mono",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--paper);color:var(--ink);line-height:1.6;font-size:16px}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--cobalt);display:block;margin-bottom:14px}
+h1,h2,h3{font-family:var(--display);line-height:1.08;letter-spacing:-.01em}
+h2{font-size:clamp(28px,4vw,42px);font-weight:600;margin-bottom:18px}
+section{padding:88px 0}
+.muted{color:var(--graphite)}
+
+/* ---------- header ---------- */
+header{position:sticky;top:0;z-index:50;background:rgba(246,248,247,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--hairline)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-family:var(--display);font-weight:700;font-size:20px;text-decoration:none;display:flex;align-items:center;gap:8px}
+.logo .sq{width:12px;height:12px;background:var(--cobalt);display:inline-block;transform:rotate(45deg)}
+.nav-links{display:flex;gap:28px;font-size:14px;font-weight:500}
+.nav-links a{text-decoration:none;color:var(--graphite);transition:color .15s}
+.nav-links a:hover,.nav-links a:focus-visible{color:var(--ink)}
+.nav-cta{font-family:var(--mono);font-size:13px;text-decoration:none;background:var(--ink);color:#fff;padding:9px 18px;border-radius:4px;transition:background .15s}
+.nav-cta:hover,.nav-cta:focus-visible{background:var(--cobalt)}
+@media(max-width:760px){.nav-links{display:none}}
+
+/* ---------- hero ---------- */
+.hero{padding:96px 0 72px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+@media(max-width:880px){.hero-grid{grid-template-columns:1fr}}
+.hero h1{font-size:clamp(38px,5.4vw,62px);font-weight:700;margin-bottom:22px}
+.hero h1 .accent{color:var(--cobalt)}
+.hero p.lede{font-size:18px;color:var(--graphite);max-width:46ch;margin-bottom:32px}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+.btn{font-family:var(--mono);font-size:14px;text-decoration:none;padding:13px 24px;border-radius:4px;transition:all .15s}
+.btn-primary{background:var(--cobalt);color:#fff}
+.btn-primary:hover,.btn-primary:focus-visible{background:var(--ink)}
+.btn-ghost{border:1px solid var(--hairline);color:var(--ink);background:var(--card)}
+.btn-ghost:hover,.btn-ghost:focus-visible{border-color:var(--ink)}
+
+/* signature: voices → verdict */
+.signal{position:relative;background:var(--card);border:1px solid var(--hairline);border-radius:10px;padding:28px;box-shadow:0 18px 40px rgba(15,30,51,.06)}
+.signal-label{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--graphite);display:flex;justify-content:space-between;margin-bottom:18px}
+.signal-label .out{color:var(--verdict)}
+.signal-body{display:grid;grid-template-columns:1fr 34px 1fr;gap:10px;align-items:center}
+.voices{display:flex;flex-direction:column;gap:8px}
+.chip{font-size:11.5px;line-height:1.35;background:var(--paper);border:1px solid var(--hairline);border-radius:6px;padding:7px 10px;color:var(--graphite);opacity:0;animation:chipIn .5s ease forwards}
+.chip b{color:var(--ink);font-weight:600;font-family:var(--mono);font-size:10px;display:block;margin-bottom:2px;letter-spacing:.06em}
+.chip:nth-child(1){animation-delay:.15s}
+.chip:nth-child(2){animation-delay:.45s}
+.chip:nth-child(3){animation-delay:.75s}
+.chip:nth-child(4){animation-delay:1.05s}
+@keyframes chipIn{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:none}}
+.flow{display:flex;flex-direction:column;align-items:center;gap:4px}
+.flow span{width:6px;height:6px;border-radius:50%;background:var(--cobalt);opacity:.25;animation:pulse 1.6s infinite}
+.flow span:nth-child(2){animation-delay:.25s}
+.flow span:nth-child(3){animation-delay:.5s}
+@keyframes pulse{0%,100%{opacity:.2}50%{opacity:1}}
+.verdict-chart{display:flex;align-items:flex-end;gap:10px;height:150px;padding:6px 4px 0}
+.bar{flex:1;border-radius:4px 4px 0 0;background:linear-gradient(180deg,var(--cobalt),#5E73F0);transform-origin:bottom;transform:scaleY(0);animation:grow .9s cubic-bezier(.2,.7,.2,1) forwards}
+.bar.v{background:linear-gradient(180deg,var(--verdict),#3FC894)}
+.bar:nth-child(1){height:46%;animation-delay:.9s}
+.bar:nth-child(2){height:64%;animation-delay:1.05s}
+.bar:nth-child(3){height:38%;animation-delay:1.2s}
+.bar:nth-child(4){height:88%;animation-delay:1.35s}
+.bar:nth-child(5){height:72%;animation-delay:1.5s}
+@keyframes grow{to{transform:scaleY(1)}}
+.chart-caption{font-family:var(--mono);font-size:10.5px;color:var(--graphite);text-align:right;margin-top:10px}
+@media(prefers-reduced-motion:reduce){
+  .chip,.bar{animation:none;opacity:1;transform:none}
+  .flow span{animation:none;opacity:.7}
+  html{scroll-behavior:auto}
+}
+@media(max-width:480px){.signal-body{grid-template-columns:1fr}.flow{flex-direction:row}.verdict-chart{height:110px}}
+
+/* ---------- sectors ---------- */
+.sectors{background:var(--card);border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline)}
+.sector-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:36px}
+@media(max-width:760px){.sector-grid{grid-template-columns:1fr}}
+.sector{border:1px solid var(--hairline);border-radius:10px;padding:30px;background:var(--paper)}
+.sector h3{font-size:22px;margin-bottom:10px}
+.sector .tag{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--verdict);display:block;margin-bottom:12px}
+.sector ul{list-style:none;margin-top:14px}
+.sector li{padding:8px 0;border-top:1px dashed var(--hairline);font-size:14.5px;color:var(--graphite)}
+.sector li::before{content:"→ ";color:var(--cobalt);font-family:var(--mono)}
+
+/* ---------- pipeline ---------- */
+.pipeline-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:40px;border:1px solid var(--hairline);border-radius:10px;overflow:hidden;background:var(--card)}
+@media(max-width:880px){.pipeline-steps{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.pipeline-steps{grid-template-columns:1fr}}
+.step{padding:28px 24px;border-right:1px solid var(--hairline);position:relative}
+.step:last-child{border-right:none}
+@media(max-width:880px){.step{border-bottom:1px solid var(--hairline)}}
+.step .num{font-family:var(--mono);font-size:12px;color:var(--cobalt);display:block;margin-bottom:14px}
+.step h3{font-size:18px;margin-bottom:8px}
+.step p{font-size:14px;color:var(--graphite)}
+.step:hover{background:#FBFCFC}
+
+/* ---------- deliverables ---------- */
+.deliv-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:36px}
+@media(max-width:760px){.deliv-grid{grid-template-columns:1fr}}
+.deliv{background:var(--ink);color:#E8EDF4;border-radius:10px;padding:34px}
+.deliv.alt{background:var(--cobalt)}
+.deliv h3{font-size:22px;color:#fff;margin-bottom:10px}
+.deliv p{font-size:14.5px;color:rgba(232,237,244,.82)}
+.deliv .k{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);display:block;margin-bottom:14px}
+
+/* ---------- contact ---------- */
+.contact{background:var(--card);border-top:1px solid var(--hairline)}
+.contact-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+@media(max-width:760px){.contact-inner{grid-template-columns:1fr}}
+.email-card{background:var(--paper);border:1px solid var(--hairline);border-radius:10px;padding:30px}
+.email-card .k{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--graphite);display:block;margin-bottom:10px}
+.email-card a{font-family:var(--mono);font-size:17px;color:var(--cobalt);text-decoration:none;word-break:break-all}
+.email-card a:hover,.email-card a:focus-visible{text-decoration:underline}
+
+footer{padding:28px 0;border-top:1px solid var(--hairline)}
+.foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--graphite)}
+.foot .mono{font-family:var(--mono);font-size:12px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#top"><span class="sq" aria-hidden="true"></span>GPMSquare</a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#sectors">Who we serve</a>
+      <a href="#how">How it works</a>
+      <a href="#deliverables">Deliverables</a>
+    </nav>
+    <a class="nav-cta" href="#contact">Start a project</a>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">AI-based market research · Pharma &amp; FMCG</span>
+      <h1>From thousands of voices to <span class="accent">one clear verdict.</span></h1>
+      <p class="lede">GPMSquare turns consumer and expert opinion into decision-ready market research. We listen across varied, salient data sources, then process the signal with AI, NLP and custom econometric models — so you get answers, not noise.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#contact">Talk to us</a>
+        <a class="btn btn-ghost" href="#how">See the pipeline</a>
+      </div>
+    </div>
+
+    <div class="signal" aria-label="Illustration: raw opinions converging into an insight chart">
+      <div class="signal-label"><span>Raw opinion in</span><span class="out">Insight out</span></div>
+      <div class="signal-body">
+        <div class="voices">
+          <div class="chip"><b>CONSUMER</b>"Switched brands after the price hike — the new one feels just as good."</div>
+          <div class="chip"><b>HCP · CARDIOLOGIST</b>"Adherence drops sharply once dosing goes past twice daily."</div>
+          <div class="chip"><b>CONSUMER</b>"I only trust labels that list every ingredient up front."</div>
+          <div class="chip"><b>HCP · PHARMACIST</b>"Patients ask for the generic by name now."</div>
+        </div>
+        <div class="flow" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div>
+          <div class="verdict-chart" aria-hidden="true">
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar v"></div><div class="bar"></div>
+          </div>
+          <div class="chart-caption">Theme prevalence · weighted by source salience</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTORS -->
+<section class="sectors" id="sectors">
+  <div class="wrap">
+    <span class="eyebrow">Who we serve</span>
+    <h2>Built for two industries where opinion moves markets.</h2>
+    <p class="muted" style="max-width:60ch">The right voice depends on the question. We design every study around the audience whose opinion actually decides the outcome — and the sources where that opinion genuinely lives.</p>
+    <div class="sector-grid">
+      <div class="sector">
+        <span class="tag">Pharma &amp; Healthcare</span>
+        <h3>Expert opinion, at scale</h3>
+        <p class="muted">Structured insight from doctors, pharmacists and other healthcare professionals — captured where they speak candidly and analysed with clinical-grade rigour.</p>
+        <ul>
+          <li>HCP perception &amp; prescription drivers</li>
+          <li>Treatment journey &amp; adherence research</li>
+          <li>Launch readiness &amp; message testing</li>
+        </ul>
+      </div>
+      <div class="sector">
+        <span class="tag">FMCG &amp; Consumer</span>
+        <h3>Consumer opinion, decoded</h3>
+        <p class="muted">What shoppers say, choose and abandon — gathered from varied, salient consumer touchpoints and converted into category-level clarity.</p>
+        <ul>
+          <li>Brand health &amp; switching behaviour</li>
+          <li>Concept, claim &amp; pack testing</li>
+          <li>Pricing &amp; demand sensitivity</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PIPELINE -->
+<section id="how">
+  <div class="wrap">
+    <span class="eyebrow">How it works</span>
+    <h2>An automated research pipeline, end to end.</h2>
+    <p class="muted" style="max-width:60ch">Every project moves through the same disciplined sequence — which is why our turnaround is measured in days, not months.</p>
+    <div class="pipeline-steps">
+      <div class="step">
+        <span class="num">01 / LISTEN</span>
+        <h3>Source the right voices</h3>
+        <p>Consumer or expert opinion — doctors, HCPs, shoppers — drawn from varied and salient data sources matched to the project.</p>
+      </div>
+      <div class="step">
+        <span class="num">02 / UNDERSTAND</span>
+        <h3>AI &amp; NLP processing</h3>
+        <p>Language models and NLP structure raw opinion into themes, sentiment and intent — at a scale manual coding can't reach.</p>
+      </div>
+      <div class="step">
+        <span class="num">03 / QUANTIFY</span>
+        <h3>Custom econometric models</h3>
+        <p>Bespoke econometric algorithms weight, validate and quantify the signal, turning patterns into measurable effects.</p>
+      </div>
+      <div class="step">
+        <span class="num">04 / DECIDE</span>
+        <h3>Decision-ready output</h3>
+        <p>Findings land as polished PowerPoint reports or hosted interactive dashboards — ready for the boardroom.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DELIVERABLES -->
+<section class="sectors" id="deliverables" style="border-bottom:none">
+  <div class="wrap">
+    <span class="eyebrow">Deliverables</span>
+    <h2>Insight in the format your team already works in.</h2>
+    <div class="deliv-grid">
+      <div class="deliv">
+        <span class="k">Format 01</span>
+        <h3>PowerPoint reports</h3>
+        <p>Executive-ready decks: methodology, evidence, and clear recommendations. Built to be presented as-is, or lifted straight into your own strategy documents.</p>
+      </div>
+      <div class="deliv alt">
+        <span class="k">Format 02</span>
+        <h3>Interactive dashboards</h3>
+        <p>Hosted, always-on dashboards that let your team slice findings by segment, market and theme — and revisit the evidence behind every number.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap contact-inner">
+    <div>
+      <span class="eyebrow">Contact</span>
+      <h2>Have a research question? Let's scope it.</h2>
+      <p class="muted">Tell us the decision you need to make. We'll come back with the audience, sources and method that will answer it — and how fast we can deliver.</p>
+    </div>
+    <div class="email-card">
+      <span class="k">Write to us</span>
+      <a href="mailto:gpmsquared@gmail.com">gpmsquared@gmail.com</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© <span id="yr">2026</span> GPMSquare. AI-based market research for pharma &amp; FMCG.</span>
+    <span class="mono">Voices in → Verdicts out</span>
+  </div>
+</footer>
+
+<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+</body>
 </html>
